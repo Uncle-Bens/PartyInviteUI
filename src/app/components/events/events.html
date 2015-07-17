@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="page-header">
+    <h2>Events</h2>
+  </div>
+
+  <div class="row search">
+    <div class='col-sm-1'>
+      <h4>Search:</h4>
+    </div>
+    <div class='col-sm-3'>
+        <div class="form-group">
+          <div class='input-group date' >
+            <input type='text' class="form-control " placeholder="From"/>
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+    </div>
+    <div class='col-sm-3'>
+      <div class="form-group">
+        <div class='input-group date' >
+          <input type='text' class="form-control" placeholder="Until"/>
+          <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row event" ng-repeat="event in vm.allEvents">
+  <div class="col-md-12">
+        <h4>{{event.EventName}}</h4>
+  </div>
+</div>

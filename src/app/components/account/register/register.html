@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="page-header">
+		<h2>Register</h2>
+	</div>
+
+	<form class="form-horizontal" ng-submit="register()">
+
+		<!-- Username -->
+	    <div class="form-group">
+	      <!-- <label class="control-label col-md-2"  for="username">Username</label> -->
+			<div class="col-md-3">
+				<input type="text" id="username" ng-model="userName" placeholder="User Name" class="form-control">
+			</div>
+	    </div>
+
+		 <!-- Password-->
+	    <div class="form-group">
+	      <!-- <label class="control-label col-md-2" for="password">Password</label> -->
+			<div class="col-md-3">
+				<input type="password" id="password" ng-model="password" placeholder="Password" class="form-control">
+			</div>
+	    </div>
+
+	 	<!-- Confirm password -->
+	    <div class="form-group">
+	      <!-- <label class="control-label col-md-2"  for="password_confirm">Confirm password</label> -->
+			<div class="col-md-3">
+				<input type="password" id="password_confirm" ng-model="confirmPassword" placeholder="Confirm Password" class="form-control">
+			</div>
+	    </div>
+
+	    <!-- Register -->
+	    <div class="form-group">
+			<div class="col-md-3">
+				<input type="submit" id="submit" value="Register" class="btn btn-info pull-right">	
+			</div>
+	    </div>
+	</form>
+</div>

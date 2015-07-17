@@ -1,0 +1,21 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/">
+        <span class="glyphicon glyphicon-glass"></span>
+        <span ></span> Invite Island
+      </a>
+    </div>
+    <div>
+    </div>
+    <div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="isLoggedIn"><a href="#/register">Register</a></li>
+        <li ng-hide="isLoggedIn"><a href="#/login">Log in</a></li>
+        <li ng-show="isLoggedIn"><p class="navbar-text">Logged in as {{userName}}</p></li>
+        <li ng-show="isLoggedIn"><a href="#/" ng-click="logoff()">Log off</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
