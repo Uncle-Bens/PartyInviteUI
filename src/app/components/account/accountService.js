@@ -18,16 +18,19 @@ angular.module('accountModule')
 	this.userLogin = function (username, password){
 		return $http.post('http://localhost:8027/api/user/login', {userName: username, Password: password})
 		.then(function (response){
-			localStorageService.setToken(response.data);
+			localStorageService.setToken(response.data.Token);
 		});
 	};
 
-    this.logoff = function () { localStorageService.removeToken(); };
+    this.logoff = function () { 
+    	localStorageService.removeToken();
+    	localStorageService.removeUserName();
+     };
 }])
 
 .service('localStorageService', ['$window', function ($window){
 
-	$window.localStorage.setItem('userName', 'Uncle');
+	// $window.localStorage.setItem('userName', 'Mike');
 
 	this.setToken = function (accessToken) { $window.localStorage.setItem('token', accessToken); };
 
@@ -36,6 +39,8 @@ angular.module('accountModule')
 	this.removeToken = function () { $window.localStorage.removeItem('token'); };
 
 	this.isTokenExist = function () { return !!($window.localStorage.getItem('token')); };
+
+	this.setUserName =  function (username) { $window.localStorage.setItem('userName', userName); };
 
 	this.getUserName = function () { return $window.localStorage.getItem('userName'); };
 
