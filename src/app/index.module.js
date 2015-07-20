@@ -7,5 +7,6 @@ angular.module('partyInviteUi', [
   'ui.bootstrap',
   'eventsModule',
   'accountModule',
-  'userModule'
+  'userModule',
+  'serverModule'
 ]);

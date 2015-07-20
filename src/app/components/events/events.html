@@ -1,37 +1,61 @@
 <div class="container">
-  <div class="page-header">
+  <div class="page-header" style="border-bottom: 0px;">
     <h2>Events</h2>
   </div>
-
-  <div class="row search">
-    <div class='col-sm-1'>
-      <h4>Search:</h4>
-    </div>
-    <div class='col-sm-3'>
-        <div class="form-group">
-          <div class='input-group date' >
-            <input type='text' class="form-control " placeholder="From"/>
-            <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-            </span>
+  <!-- Search panel-->
+  <div class="panel panel-default">
+    <div class="panel-heading" style="padding-top:20px;">
+      <div class="row search">
+        <div class='col-sm-1'>
+          <h4>Search:</h4>
+        </div>
+        <div class='col-sm-3'>
+            <div class="form-group">
+              <div class='input-group date'>
+                <input type='text' class="form-control" ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker/>
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+        </div>
+        <div class='col-sm-3'>
+          <div class="form-group">
+            <div class='input-group date' >
+              <input type='text' class="form-control" ng-model="untilDate" data-min-date="{{fromDate}}" placeholder="Until" bs-datepicker/>
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
           </div>
         </div>
-    </div>
-    <div class='col-sm-3'>
-      <div class="form-group">
-        <div class='input-group date' >
-          <input type='text' class="form-control" placeholder="Until"/>
-          <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-          </span>
+        <div class='col-sm-1'>
+            <button class="btn btn-default pull-right" ng-click="">search</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row event" ng-repeat="event in vm.allEvents">
-  <div class="col-md-12">
-        <h4>{{event.EventName}}</h4>
-  </div>
+  <!-- Content -->
+  <table class="table table-striped" >
+    <thead>
+      <tr>
+        <th>Event </th>
+        <th>Description</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="event in vm.allEvents">
+        <td>{{ event.EventName }}</td>
+        <td>{{ event.EventDescription }}</td>
+        <td>{{ event.Date }}</td>
+        <td>
+          <button type="button" class="btn btn-default pull-right" ng-click="vm.addVisit(event.Id)">Visit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>

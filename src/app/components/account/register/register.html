@@ -2,37 +2,50 @@
 	<div class="page-header">
 		<h2>Register</h2>
 	</div>
-
-	<form class="form-horizontal" ng-submit="register()">
+	<form name="registerForm" class="form-horizontal" ng-submit="register()" novalidate>
 
 		<!-- Username -->
-	    <div class="form-group">
-	      <!-- <label class="control-label col-md-2"  for="username">Username</label> -->
+	    <div class="form-group " ng-class="{ 'has-error' : registerForm.userName.$invalid && !registerForm.userName.$pristine }">
+	      	<label class="control-label col-md-2">Username</label>
 			<div class="col-md-3">
-				<input type="text" id="username" ng-model="userName" placeholder="User Name" class="form-control">
+				<input type="text" id="username" name="userName" ng-model="userName"  class="form-control"
+				required ng-minlength="2" ng-maxlength="16" autofocus/>
 			</div>
+			<div class="col-md-3 err-col">
+	            <span ng-show="registerForm.userName.$dirty && registerForm.userName.$error.required" class="help-block">Name is required</span>
+	            <span ng-show="registerForm.userName.$dirty && registerForm.userName.$error.minlength" class="help-block">Name is too short</span>
+	            <span ng-show="registerForm.userName.$dirty && registerForm.userName.$error.maxlength" class="help-block">Name is too long</span>
+        	</div>
 	    </div>
 
 		 <!-- Password-->
-	    <div class="form-group">
-	      <!-- <label class="control-label col-md-2" for="password">Password</label> -->
+	    <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$invalid && !registerForm.password.$pristine }">
+	      	<label class="control-label col-md-2" for="password">Password</label>
 			<div class="col-md-3">
-				<input type="password" id="password" ng-model="password" placeholder="Password" class="form-control">
+				<input type="password" id="password" name="password" ng-model="password"  class="form-control" required ng-minlength="5" ng-maxlength="20"/>
 			</div>
+			<div class="col-md-3 err-col">
+	            <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required</span>
+	            <span ng-show="registerForm.password.$dirty && registerForm.password.$error.minlength" class="help-block">Password is too short</span>
+	            <span ng-show="registerForm.password.$dirty && registerForm.password.$error.maxlength" class="help-block">Password is too long</span>
+        	</div>
 	    </div>
 
 	 	<!-- Confirm password -->
-	    <div class="form-group">
-	      <!-- <label class="control-label col-md-2"  for="password_confirm">Confirm password</label> -->
+	    <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$invalid && !registerForm.confirmPassword.$pristine }">
+	      	<label class="control-label col-md-2" for="password">Confirm password</label>
 			<div class="col-md-3">
-				<input type="password" id="password_confirm" ng-model="confirmPassword" placeholder="Confirm Password" class="form-control">
+				<input type="password" id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"  class="form-control" ng-required pw-check="password" />
 			</div>
+			<div class="col-md-3 err-col">
+	            <span ng-show="registerForm.confirmPassword.$dirty && registerForm.confirmPassword.$error.pwmatch" class="help-block">Passwords don't match.</span>
+        	</div>
 	    </div>
 
 	    <!-- Register -->
 	    <div class="form-group">
-			<div class="col-md-3">
-				<input type="submit" id="submit" value="Register" class="btn btn-info pull-right">	
+			<div class="col-md-5">
+				<button type="submit" class="btn btn-info pull-right" ng-disabled="registerForm.$invalid" >Register</button>
 			</div>
 	    </div>
 	</form>

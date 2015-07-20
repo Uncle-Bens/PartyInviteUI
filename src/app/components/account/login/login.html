@@ -2,33 +2,43 @@
 	<div class="page-header">
 		<h2>Log in</h2>
 	</div>
-	<form class="form-horizontal" ng-submit="login()">
+	<form name="loginForm" class="form-horizontal" ng-submit="login()" novalidate>
 
 		<!-- Username -->
-	    <div class="form-group">
-	      <!-- <label class="control-label col-md-2"  for="username">Username</label> -->
+	    <div class="form-group " ng-class="{ 'has-error' : loginForm.userName.$invalid && !loginForm.userName.$pristine }">
+	      	<label class="control-label col-md-2">Username</label>
 			<div class="col-md-3">
-				<input type="text" id="username" name="username" ng-model="userName" placeholder="User Name" class="form-control">
+				<input type="text" id="username" name="userName" ng-model="userName"  class="form-control"
+				required ng-minlength="2" ng-maxlength="16" autofocus>
 			</div>
+			<div class="col-md-3 err-col">
+	            <span ng-show="loginForm.userName.$dirty && loginForm.userName.$error.required" class="help-block">Name is required</span>
+	            <span ng-show="loginForm.userName.$dirty && loginForm.userName.$error.minlength" class="help-block">Name is too short</span>
+	            <span ng-show="loginForm.userName.$dirty && loginForm.userName.$error.maxlength" class="help-block">Name is too long</span>
+        	</div>
 	    </div>
 
 		 <!-- Password-->
-	    <div class="form-group">
-	      <!-- <label class="control-label col-md-2" for="password">Password</label> -->
+	    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+	      	<label class="control-label col-md-2" for="password">Password</label>
 			<div class="col-md-3">
-				<input type="password" id="password" name="password" ng-model="password" placeholder="Password" class="form-control">
+				<input type="password" id="password" name="password" ng-model="password"  class="form-control" required ng-minlength="5" ng-maxlength="20">
 			</div>
+			<div class="col-md-3 err-col">
+	            <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="help-block">Password is required</span>
+	            <span ng-show="loginForm.password.$dirty && loginForm.password.$error.minlength" class="help-block">Password is too short</span>
+	            <span ng-show="loginForm.password.$dirty && loginForm.password.$error.maxlength" class="help-block">Password is too long</span>
+        	</div>
 	    </div>
 
 	    <!-- Login -->
 	    <div class="form-group ">
-			<div class="col-md-3 ">
-				<div class="col-md-3">
+			<div class="col-md-5 ">
+				<div class="col-md-2 col-md-offset-5">
 					<h5><a href="#/register">Register</a></h5>
 				</div>
 				<div>
-					<input type="submit" value="Log in"  class="btn btn-info pull-right">
-					<!-- <a href="#/user" class="btn btn-info pull-right" role="button">Login</a> -->
+					<button type="submit" class="btn btn-info pull-right" ng-disabled="loginForm.$invalid">Log in</button> 
 				</div>
 			</div>
 	    </div>
