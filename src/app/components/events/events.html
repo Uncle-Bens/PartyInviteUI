@@ -2,9 +2,10 @@
   <div class="page-header" style="border-bottom: 0px;">
     <h2>Events</h2>
   </div>
+
   <!-- Search panel-->
   <div class="panel panel-default">
-    <div class="panel-heading" style="padding-top:20px;">
+    <div class="panel-heading">
       <div class="row search">
         <div class='col-sm-1'>
           <h4>Search:</h4>
@@ -12,17 +13,18 @@
         <div class='col-sm-3'>
             <div class="form-group">
               <div class='input-group date'>
-                <input type='text' class="form-control" ng-model="fromDate" data-max-date="{{untilDate}}" placeholder="From" bs-datepicker/>
+                <input type='text' class="form-control" ng-model="fromDate" data-date-format="yyyy-MM-dd" data-max-date="{{untilDate}}" placeholder="From" data-autoclose="1" bs-datepicker/>
                 <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
               </div>
             </div>
         </div>
+
         <div class='col-sm-3'>
           <div class="form-group">
             <div class='input-group date' >
-              <input type='text' class="form-control" ng-model="untilDate" data-min-date="{{fromDate}}" placeholder="Until" bs-datepicker/>
+              <input type='text' class="form-control" ng-model="untilDate" data-date-format="yyyy-MM-dd" data-min-date="{{fromDate}}" placeholder="Until" data-autoclose="1" bs-datepicker/>
               <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
               </span>
@@ -30,7 +32,7 @@
           </div>
         </div>
         <div class='col-sm-1'>
-            <button class="btn btn-default pull-right" ng-click="">search</button>
+            <button class="btn btn-default pull-right" ng-click="vm.getEventsbyDate(fromDate, untilDate)">search</button>
         </div>
       </div>
     </div>
@@ -40,7 +42,7 @@
   <table class="table table-striped" >
     <thead>
       <tr>
-        <th>Event </th>
+        <th>Event</th>
         <th>Description</th>
         <th>Date</th>
         <th></th>
@@ -50,12 +52,11 @@
       <tr ng-repeat="event in vm.allEvents">
         <td>{{ event.EventName }}</td>
         <td>{{ event.EventDescription }}</td>
-        <td>{{ event.Date }}</td>
+        <td>{{ event.Date | date:'medium' }}</td>
         <td>
           <button type="button" class="btn btn-default pull-right" ng-click="vm.addVisit(event.Id)">Visit</button>
         </td>
       </tr>
     </tbody>
   </table>
-
 </div>
