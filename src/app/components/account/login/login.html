@@ -22,7 +22,7 @@
 	    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
 	      	<label class="control-label col-md-2" for="password">Password</label>
 			<div class="col-md-3">
-				<input type="password" id="password" name="password" ng-model="password"  class="form-control" required ng-minlength="5" ng-maxlength="20">
+				<input type="password" id="password" name="password" ng-model="password"  class="form-control" required ng-minlength="4" ng-maxlength="20">
 			</div>
 			<div class="col-md-3 err-col">
 	            <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="help-block">Password is required</span>
@@ -33,7 +33,7 @@
 
 	    <!-- Login -->
 	    <div class="form-group ">
-			<div class="col-md-5 ">
+			<div class="col-md-5">
 				<div class="col-md-2 col-md-offset-5">
 					<h5><a href="#/register">Register</a></h5>
 				</div>

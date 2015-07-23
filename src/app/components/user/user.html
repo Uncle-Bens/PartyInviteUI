@@ -1,23 +1,165 @@
 <div class="container">
-<!--   <div class="page-header" style="border-bottom: 0px;">
+<!--   <div class="page-header">
     <h2>User</h2>
   </div> -->
-  <tabset>
+  <tabset class="tab">
+    <!-- Events tab-->
     <tab heading="Events">
-		<div class="panel-body">Events List</div>
+  		<div class="panel-body">
+        <!-- Search panel-->
+        <div class="panel panel-default">
+          <form name="searchPanel" class="panel-heading" ng-submit="vm.getEventsbyDate(fromDate, untilDate)">
+            <div class="row search">
+              <div class='col-sm-1'>
+                <h4>Search:</h4>
+              </div>
+
+              <!-- Date from input field -->
+              <div class='col-sm-3'>
+                  <div class="form-group" ng-class="{ 'has-error' : searchPanel.fromDate.$invalid && !searchPanel.fromDate.$pristine }">
+                    <div class='input-group date'>
+                      <input type='text' class="form-control" name="fromDate" ng-model="fromDate" data-date-format="yyyy-MM-dd" data-max-date="{{untilDate}}" placeholder="From"  data-autoclose="1" required bs-datepicker/>
+                      <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+              </div>
+              <!-- Date until input field -->
+              <div class='col-sm-3'>
+                <div class="form-group">
+                  <div class='input-group date' ng-class="{ 'has-error' : searchPanel.untilDate.$invalid && !searchPanel.untilDate.$pristine }">
+                    <input type='text' class="form-control" name="untilDate" ng-model="untilDate" data-date-format="yyyy-MM-dd" data-min-date="{{fromDate}}" placeholder="Until" data-autoclose="1"  required bs-datepicker/>
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class='col-sm-1'>
+                  <button type="submit" class="btn btn-default pull-right" ng-disabled="searchPanel.$invalid" >search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Content -->
+        <table class="table table-striped">
+          <thead>
+            <tr >
+              <th>Event</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="event in vm.allEvents" >
+              <td>{{ event.EventName }}</td>
+              <td>{{ event.EventDescription }}</td>
+              <td>{{ event.Date | date:'medium' }}</td>
+              <td>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.addVisit(event.Id)">Visit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </tab>
-        <tab heading="My events">
-		<div class="panel-body">My events List</div>
+
+    <!-- Your events tab-->
+    <tab heading="Your events" ng-click="vm.userEvents()">
+		  <div class="panel-body">
+        <!-- Content -->
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Description</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="event in vm.currUser.Events">
+              <td>{{ event.EventName }}</td>
+              <td>{{ event.EventDescription }}</td>
+              <td>{{ event.Date | date:'medium' }}</td>
+              <td>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.deleteEvent(event.Id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </tab>
-    <tab heading="Visits">
-    	<div class="panel-body">Visits List</div>
+
+    <!-- Visits tab-->
+    <tab heading="Visits" ng-click="vm.userEvents()">
+    	<div class="panel-body">
+        <!-- Content -->
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Description</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="visit in vm.currUser.Visits">
+              <td>{{ visit.EventName }}</td>
+              <td>{{ visit.EventDescription }}</td>
+              <td>{{ visit.Date | date:'medium' }}</td>
+              <td>
+                <button type="button" class="btn btn-default pull-right" ng-click="vm.deleteVisit(visit.Id)">Leave</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>        
+      </div>
     </tab>
+
+    <!-- Create event tab-->
     <tab heading="Create event">
         <div class="panel-body">
-            Create event form
-		</div>
+          <form name="datePickForm" class="form-horizontal" ng-submit="vm.createEvent(eventName, eventDescription, eventDate)" novalidate>
+            <!-- Event name -->
+            <div class="form-group">
+              <label class="control-label col-md-2">Event name</label>
+              <div class="col-md-4">
+                <input type="text" id="eventname" name="eventName" ng-model="eventName"  class="form-control"
+                required ng-minlength="2" ng-maxlength="20" autofocus/>
+              </div>              
+            </div>
+            <!-- Event description -->
+            <div class="form-group">
+              <label class="control-label col-md-2">Event description</label>
+              <div class="col-md-4">
+                <textarea type="text" id="eventdescription" name="eventDescription" ng-model="eventDescription"  class="form-control" required rows="4"/>
+              </div>              
+            </div>
+            <!-- Event date -->
+            <div class="form-group">
+              <label class="control-label col-md-2">Event date</label>
+              <div class="col-md-4">
+                  <div class='input-group date'ng-class="{ 'has-error' : searchPanel.untilDate.$invalid && !searchPanel.untilDate.$pristine }">
+                    <input type='text' class="form-control" ng-model="eventDate" data-date-format="yyyy-MM-dd" data-autoclose="1" required bs-datepicker/>
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>                
+              </div>
+            </div>
+            <!-- Save button -->
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-info pull-right" ng-disabled="datePickForm.$invalid">Save</button> 
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
     </tab>
-    <tab ng-model="tab" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-    	<div class="panel-body">{{tab.content}}</div>
   </tabset>
 </div>

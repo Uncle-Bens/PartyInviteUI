@@ -1,7 +1,7 @@
 'use strict';
 angular.module('accountModule')
 
-.service('accountService', ['$http','localStorageService', function ($http,localStorageService) {
+.service('accountService', ['$http','localStorageService', 'apiHost', function ($http, localStorageService, apiHost) {
 	var self = this;
 
 	this.userName = function () {
@@ -11,12 +11,12 @@ angular.module('accountModule')
 	this.isLoggedIn = localStorageService.isTokenExist;
 
 	this.userRegister = function (username, password, confirmPassword) {
-		return $http.post('http://localhost:8027/api/user/register',
+		return $http.post(apiHost + '/api/user/register',
 			{userName: username, Password: password, ConfirmPassword: confirmPassword});
 	};
 
 	this.userLogin = function (username, password){
-		return $http.post('http://localhost:8027/api/user/login', {userName: username, Password: password})
+		return $http.post(apiHost + '/api/user/login', {userName: username, Password: password})
 		.then(function (response){
 			localStorageService.setToken(response.data.Token);
 		});
@@ -29,8 +29,6 @@ angular.module('accountModule')
 }])
 
 .service('localStorageService', ['$window', function ($window){
-
-	// $window.localStorage.setItem('userName', 'Mike');
 
 	this.setToken = function (accessToken) { $window.localStorage.setItem('token', accessToken); };
 

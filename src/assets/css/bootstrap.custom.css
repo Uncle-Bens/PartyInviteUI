@@ -25,3 +25,10 @@ body {
 .page-header {
 }
 
+.tab {
+  padding-top:10px;
+}
+
+.table thead>tr>th {
+   border-bottom: 0px solid;
+}

@@ -1,18 +1,15 @@
 'use strict';
 angular.module('eventsModule')
 
-.factory('EventsModel', ['eventApiService', 'serverService','accountService', '$location', 
-	function (eventApiService, serverService, accountService, $location){
+.factory('EventsModel', ['serverService','accountService', '$location', 
+	function (serverService, accountService, $location){
 	return function (){
 		var self = this;
 
-		eventApiService.GetAllEvents().success(function (data){
+		if (accountService.isLoggedIn()) $location.path('/user');
+		serverService.GetAllEvents().success(function (data){
 			self.allEvents = data;
 		});
-
-		// self.addVisit = function (id) {
-		// 	serverService.addVisit(id).success(function () { $location.path('/user'); });
-		// }
 
 		self.Visit = function () {
             var redirectPath = accountService.isLoggedIn()
@@ -22,7 +19,7 @@ angular.module('eventsModule')
 		}
 
 		self.getEventsbyDate = function (fromDate, untilDate) {
-			eventApiService.getEventsbyDate(fromDate, untilDate).success(function (data) {
+			serverService.getEventsbyDate(fromDate, untilDate).success(function (data) {
 			self.allEvents = data; });
 		}
 	};

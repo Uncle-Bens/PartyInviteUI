@@ -1,8 +1,8 @@
 'use strict';
 angular.module('userModule')
 
-.service('userApiService', ['$http', function ($http) {
+.service('userApiService', ['$http', 'apiHost', function ($http, apiHost) {
 	this.GetUser = function(){
-		return $http.get('http://localhost:8027/api/user/id');
+		return $http.get(apiHost + '/api/user/id');
 	}
 }]);

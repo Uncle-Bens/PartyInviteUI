@@ -6,6 +6,6 @@
     .module('partyInviteUi')
     .constant('malarkey', malarkey)
     .constant('toastr', toastr)
-    .constant('moment', moment);
-
+    .constant('moment', moment)
+    .constant('apiHost', 'http://localhost:8027');
 })();
