@@ -1,0 +1,46 @@
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit event {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                  <form name="editEventForm" class="form-horizontal" novalidate>
+                    <!-- Event name -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-4">Event name</label>
+                      <div class="col-md-7">
+                        <input type="text" id="eventname" name="eventName" ng-model="newEvent.EventName" class="form-control"
+                        required ng-minlength="2" ng-maxlength="20" autofocus/>
+                      </div>              
+                    </div>
+                    <!-- Event description -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-4">Event description</label>
+                      <div class="col-md-7">
+                        <textarea type="text" id="eventdescription" name="eventDescription" ng-model="newEvent.EventDescription"
+                        value="hello" class="form-control" required rows="4"/></textarea>
+                      </div>              
+                    </div>
+                    <!-- Event date -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-4">Event date</label>
+                      <div class="col-md-7">
+                          <div class='input-group date'>
+                            <input type='text' class="form-control" name="eventDate" ng-model="newEvent.Date" data-date-format="yyyy-MM-dd" data-autoclose="1" required bs-datepicker/>
+                            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                          </div>                
+                      </div>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="action(newEvent);$hide()" ng-disabled="editEventForm.$invalid">Save</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

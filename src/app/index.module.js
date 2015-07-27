@@ -9,5 +9,7 @@ angular.module('partyInviteUi', [
   'accountModule',
   'userModule',
   'serverModule',
-  'mgcrea.ngStrap.datepicker'
+  'mgcrea.ngStrap',
+  'confirmModule',
+  'editEventModule'
 ]);

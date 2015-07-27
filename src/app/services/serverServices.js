@@ -13,9 +13,15 @@ angular.module('serverModule', [])
 			'&todate=' + untilDate.toISOString());
 	}
 
-	this.createEvent = function (eventName, eventDescription, eventDate) {
-		return $http.post(apiHost + '/api/event', { EventName : eventName,
-		 EventDescription : eventDescription,  Date : eventDate.toISOString() });
+	this.createEvent = function (newEvent) {
+		return $http.post(apiHost + '/api/event', { EventName : newEvent.eventName,
+		 EventDescription : newEvent.eventDescription,
+		   Date : newEvent.dateTime.toISOString() 
+		});
+	}
+
+	this.editEvent = function (eventid, newEvent) {
+		return $http.put(apiHost + '/api/event/' + eventid, newEvent, { Date: newEvent.Date });
 	}
 
 	this.deleteEvent = function (eventid) {
