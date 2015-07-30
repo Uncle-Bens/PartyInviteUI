@@ -1,0 +1,56 @@
+  <div class="page-header">
+    <h3>Create event</h3>
+  </div>
+  
+  <form name="createEventForm" class="form-horizontal" ng-submit="vm.createEvent(vm.newEvent)" novalidate>
+    <!-- Event name -->
+    <div class="form-group">
+      <label class="control-label col-md-2">Event name</label>
+      <div class="col-md-4">
+        <input type="text" id="eventname" name="eventName" ng-model="vm.newEvent.eventName"  class="form-control"
+        required ng-minlength="2" ng-maxlength="20" autofocus/>
+      </div>              
+    </div>
+    <!-- Event description -->
+    <div class="form-group">
+      <label class="control-label col-md-2">Event description</label>
+      <div class="col-md-4">
+        <textarea type="text" id="eventdescription" name="eventDescription" ng-model="vm.newEvent.eventDescription"  class="form-control" required rows="4"/>
+      </div>              
+    </div>
+    <!-- Event date -->
+    <div class="form-group">
+      <label class="control-label col-md-2">Event date</label>
+      <div class="col-md-4">
+          <div class='input-group date'ng-class="{ 'has-error' : createEventForm.eventDate.$invalid && !createEventForm.eventDate.$pristine }">
+            <input type='text' class="form-control" ng-model="vm.newEvent.dateTime"
+              data-date-format="yyyy-MM-dd" data-autoclose="1" required bs-datepicker/>
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>                
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-md-2">Event time</label>
+      <div class="col-md-4">
+          <div class='input-group date'ng-class="{ 'has-error' : createEventForm.eventTime.$invalid && !createEventForm.eventTime.$pristine }">
+            <input type="text" class="form-control" size="8" ng-model="vm.newEvent.dateTime"
+              data-time-format="HH:mm" name="time" required bs-timepicker>
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+            </span>
+          </div>                
+      </div>
+    </div>            
+    <!-- Save button -->
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-info pull-right" ng-disabled="createEventForm.$invalid">Save</button> 
+        </div>
+      </div>
+    </div>
+  </form>  
+

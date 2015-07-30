@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h3>Your visits</h3>
+</div>
+<table class="table table-striped" >
+  <thead>
+    <tr>
+      <th>Event name</th>
+      <th>Description</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="visit in vm.currUser.Visits">
+      <td>{{ visit.EventName }}</td>
+      <td>{{ visit.EventDescription }}</td>
+      <td>{{ visit.Date | date:'medium' }}</td>
+      <td>
+        <button type="button" class="btn btn-default pull-right" ng-click="vm.deleteVisit(visit.Id)">Leave</button>
+      </td>
+    </tr>
+  </tbody>
+</table> 

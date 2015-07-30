@@ -50,13 +50,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="event in vm.allEvents">
+      <tr ng-repeat="event in vm.userEvents">
         <td>{{ event.EventName }}</td>
         <td>{{ event.EventDescription }}</td>
         <td>{{ event.OwnerName }}</td>
         <td>{{ event.Date | date:'medium' }}</td>
         <td>
-          <button type="button" class="btn btn-default pull-right" ng-click="vm.addVisit()">Visit</button>
+          <button type="button" class="btn btn-default pull-right" ng-click="vm.addVisit(event.Id)">Visit</button>
         </td>
       </tr>
     </tbody>

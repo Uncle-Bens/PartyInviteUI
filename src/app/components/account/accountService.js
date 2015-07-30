@@ -2,47 +2,29 @@
 angular.module('accountModule')
 
 .service('accountService', ['$http','localStorageService', 'apiHost', function ($http, localStorageService, apiHost) {
-	var self = this;
+  var self = this;
 
-	this.userName = function () {
-        return self.isLoggedIn() ? localStorageService.getUserName() : '';
+  this.userToken = function () {
+        return self.isLoggedIn() ? localStorageService.getToken() : '';
     };
-	
-	this.isLoggedIn = localStorageService.isTokenExist;
+  
+  this.isLoggedIn = localStorageService.isTokenExist;
 
-	this.userRegister = function (username, password, confirmPassword) {
-		return $http.post(apiHost + '/api/user/register',
-			{userName: username, Password: password, ConfirmPassword: confirmPassword});
-	};
+  this.userRegister = function (username, password) {
+    return $http.post(apiHost + '/api/user/register',
+      {userName: username, Password: password});
+  };
 
-	this.userLogin = function (username, password){
-		return $http.post(apiHost + '/api/user/login', {userName: username, Password: password})
-		.then(function (response){
-			localStorageService.setToken(response.data.Token);
-		});
-	};
+  this.userLogin = function (username, password){
+    return $http.post(apiHost + '/api/user/login', {userName: username, Password: password})
+    .success(function (response){
+      localStorageService.setToken(response.Token);
+    });
+  };
 
     this.logoff = function () { 
-    	localStorageService.removeToken();
-    	localStorageService.removeUserName();
+      localStorageService.removeToken();
      };
-}])
-
-.service('localStorageService', ['$window', function ($window){
-
-	this.setToken = function (accessToken) { $window.localStorage.setItem('token', accessToken); };
-
-	this.getToken = function () { return $window.localStorage.getItem('token'); }
-
-	this.removeToken = function () { $window.localStorage.removeItem('token'); };
-
-	this.isTokenExist = function () { return !!($window.localStorage.getItem('token')); };
-
-	this.setUserName =  function (username) { $window.localStorage.setItem('userName', userName); };
-
-	this.getUserName = function () { return $window.localStorage.getItem('userName'); };
-
-	this.removeUserName = function () { $window.localStorage.removeItem('userName'); };
 }])
 
 .factory('LoginInterceptor', ['localStorageService', function (localStorageService) {
@@ -50,14 +32,10 @@ angular.module('accountModule')
         request: function (config) {
             var token = localStorageService.getToken();
             if (token) {
-            	config.headers.Authorization = token;
-        	}
+              config.headers.Authorization = token;
+          }
             return config;
             
         }
     }
-}])
-
-.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push('LoginInterceptor');
 }]);

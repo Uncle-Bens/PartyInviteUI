@@ -21,14 +21,22 @@
     <!-- endbuild -->
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.custom.css">
     <link rel="stylesheet" href="/assets/css/angular-motion/angular-motion.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.min.css">
   </head>
   <body>
     <!-- Navigation bar -->
-    
     <div navibar></div>
 
     <div class="container">
-        <div ng-view></div>    
+        <!-- Nav tabs -->
+<!--         <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#/events">Events</a></li>
+          <li role="presentation"><a href="#/userEvents">Your events</a></li>
+          <li role="presentation"><a href="#/visits">Visit</a></li>
+        </ul> -->
+
+        <!-- Content -->
+        <div class="content" ng-view ></div>    
     </div>
 
     <footer class="footer">
@@ -42,7 +50,6 @@
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
     <!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <!-- js files will be automatically insert here -->

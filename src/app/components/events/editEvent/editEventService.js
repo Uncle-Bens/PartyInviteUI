@@ -1,9 +1,9 @@
 'use strict';
-angular.module('editEventModule', [])
+angular.module('eventsModule')
 
 .service('editEventService', ['$rootScope', '$modal', function ($rootScope, $modal) {
     this.editEvent = function (oldEvent, action) {
-        var templateUrl = '/app/components/user/editEvent/editEvent.html';
+        var templateUrl = '/app/components/events/editEvent/editEvent.html';
 
         var scope = $rootScope.$new();
         scope.newEvent = oldEvent;

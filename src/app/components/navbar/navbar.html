@@ -10,6 +10,11 @@
     </div>
     <div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+      <ul class="nav navbar-nav navbar">
+        <li ng-show="isLoggedIn"><a href="#/userEvents">Events</a></li>
+        <li ng-show="isLoggedIn"><a href="#/ownerEvents">Your events</a></li>
+        <li ng-show="isLoggedIn"><a href="#/visits">Visits</a></li>       
+      </ul>    
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="isLoggedIn"><a href="#/register">Register</a></li>
         <li ng-hide="isLoggedIn"><a href="#/login">Log in</a></li>

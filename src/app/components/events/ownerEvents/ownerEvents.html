@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h3>Your events</h3>
+</div>
+<table class="table table-striped" >
+  <thead>
+    <tr>
+      <th>Event name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>
+        <a href="#/newEvent" class="btn btn-default pull-right" role="button">Create event</a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="event in vm.ownerEvents">
+      <td>{{ event.EventName }}</td>
+      <td>{{ event.EventDescription }}</td>
+      <td>{{ event.Date | date:'medium' }}</td>
+      <td class="btn-toolbar">
+        <button type="button" class="btn btn-default pull-right" ng-click="vm.deleteEvent(event.Id)">Delete</button>
+        <button type="button" class="btn btn-default pull-right" ng-click="vm.editEvent(event)">Edit</button>  
+      </td>
+    </tr>
+  </tbody>
+</table>

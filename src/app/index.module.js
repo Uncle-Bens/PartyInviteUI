@@ -7,9 +7,7 @@ angular.module('partyInviteUi', [
   'ui.bootstrap',
   'eventsModule',
   'accountModule',
-  'userModule',
-  'serverModule',
   'mgcrea.ngStrap',
   'confirmModule',
-  'editEventModule'
+  'visitsModule'
 ]);

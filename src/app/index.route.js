@@ -7,14 +7,14 @@
 
   function routeConfig($routeProvider) {
      $routeProvider
-     /*.when('/', {
-        templateUrl: 'app/components/events/events.html',
-        controller: 'EventsController',
-        controllerAs: 'events'
-      })*/
+     // .when('/', {
+     //    templateUrl: 'app/components/events/events.html',
+     //    controller: 'EventsController',
+     //    controllerAs: 'events'
+     //  })
 
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/events'
       });
   }
 

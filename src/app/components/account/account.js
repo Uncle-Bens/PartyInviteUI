@@ -13,4 +13,8 @@ angular.module('accountModule', [
 	templateUrl: 'app/components/account/login/login.html',
 	controller: 'LoginController'
     });
+}])
+
+.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('LoginInterceptor');
 }]);
