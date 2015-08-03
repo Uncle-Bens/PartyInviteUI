@@ -42,6 +42,7 @@
   <table class="table table-striped" >
     <thead>
       <tr>
+        <th>Event logo</th>
         <th>Event name</th>
         <th>Description</th>
         <th>Owner</th>
@@ -51,6 +52,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="event in vm.userEvents">
+        <td><img ng-if="event.ImagePath" ng-src="{{apiHostPath}}{{event.ImagePath}}"  class="thumb" event logo/></td>
         <td>{{ event.EventName }}</td>
         <td>{{ event.EventDescription }}</td>
         <td>{{ event.OwnerName }}</td>

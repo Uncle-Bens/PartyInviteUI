@@ -1,6 +1,6 @@
 'use strict';
 angular.module('eventsModule', [
-  'ngRoute', 'userEventsModule', 'ownerEventsModule'
+  'ngRoute', 'userEventsModule', 'ownerEventsModule','newEventsModule'
 ])
 
 .config(['$routeProvider', function ($routeProvider) {

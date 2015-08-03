@@ -1,6 +1,8 @@
 'use strict';
 angular.module('userEventsModule')
 
-.controller('UserEventsController', ['$scope','UserEventsModel', function ($scope, UserEventsModel) {
-  $scope.vm = new UserEventsModel();
+.controller('UserEventsController', ['$scope','UserEventsModel', 'apiHost',
+   function ($scope, UserEventsModel, apiHost) {
+    $scope.vm = new UserEventsModel();
+    $scope.apiHostPath = apiHost;
 }]);

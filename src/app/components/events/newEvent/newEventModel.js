@@ -1,7 +1,7 @@
 'use strict';
 angular.module('newEventsModule')
 
-.factory('NewEventModel', ['eventsService','$location', function (eventsService, $location) {
+.factory('NewEventModel', ['newEventsService','$location', function (newEventsService, $location) {
   return function () {
     var self = this;
   
@@ -10,12 +10,12 @@ angular.module('newEventsModule')
       dateTime: new Date(new Date().setMinutes(0, 0)),
       eventName: "",
       eventDescription: ""
-    }    
+    }
 
-    self.createEvent = function (newEvent) {
-      eventsService.createEvent(newEvent).success(function ()
+    self.createEvent = function (file, newEvent) 
+    {
+      newEventsService.createEvent(file, newEvent).success(function ()
        { $location.path('/ownerEvents'); });
-    };    
-  } 
-
+    }        
+  }
 }]);
